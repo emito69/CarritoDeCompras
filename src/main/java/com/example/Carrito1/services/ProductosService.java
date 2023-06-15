@@ -35,4 +35,9 @@ public class ProductosService {
         Iprods.deleteById(id);
     }
 
+    public Productos updateProducto(Productos p){
+
+        return Iprods.saveAndFlush(p);
+    }
+
 }
