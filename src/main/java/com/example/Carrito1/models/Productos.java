@@ -19,21 +19,24 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name="productos")  // le da el nombre a la tabla que se va a crear cuando se establezca la comm con la BD
-@SQLDelete(sql = "UPDATE personas SET enable = false WHERE id = ?")   // consulta SQL para hacer eliminacion de datos
-@Where(clause = "enable = true")    // pero teniendo en cuenta esta clausula (en lugar de borrar deshabilitamos)
+@SQLDelete(sql = "UPDATE productos SET enable = false WHERE id = ?")   // consulta SQL para hacer eliminacion de datos
+                                    // pero teniendo en cuenta esta clausula (en lugar de borrar deshabilitamos)
+                                    // la annotation @SQLDelete me sobreescribe cualquier .delete que utilice desde JPARepository
+
+@Where(clause = "enable = true")   // la annotation @Where me filtra cualquier query desde JPARepository
 public class Productos {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)   // generacion de la clave primaria
     @Column(name = "id", nullable = false, length = 11)
-    private long id;
+    private Long id;   //acá usar Long no long
 
     //@ManyToOne(fetch = FetchType.LAZY)
     //@JoinColumn(name="productos_id")
     //private Pedidos pedido;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    private List<Pedidos> pedido;
+    //@OneToMany(fetch = FetchType.LAZY)
+    //private List<Pedidos> pedido;
 
     @Column(name = "nombre", nullable = false, length = 255)
     @NotBlank @NotNull
@@ -52,15 +55,14 @@ public class Productos {
 
     @Column(name = "precio")
     @DecimalMin(value = "0.1")
-    @NotBlank @NotNull
+    @NotNull
     private Double precio;
 
     @Column(name = "foto", length = 255)
-    @NotBlank @NotNull
     private String foto;
 
     @Column(name = "tamanio", length = 10)
-    @NotBlank @NotNull
+    @NotNull
     private int tamanio;
 
     @Column(name = "tipo", length = 150)

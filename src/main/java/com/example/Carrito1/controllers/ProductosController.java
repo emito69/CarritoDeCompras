@@ -4,10 +4,7 @@ import com.example.Carrito1.models.Productos;
 import com.example.Carrito1.services.ProductosService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,6 +21,20 @@ public class ProductosController {
         return ResponseEntity.ok(productosService.getListProductos());
     }
 
+    @GetMapping("/{id}")    // ../api/carrito1/productos/list es la url de la API
+    public ResponseEntity<Object> getProducto(@PathVariable String id){
+        return ResponseEntity.ok(productosService.getProducto(id)); // implementar el método findById(id) en la interface productosService para poder utilizarlo
+    }
+
+    @PostMapping("add")    // ../api/carrito1/productos/add es la url de la API
+    public ResponseEntity<Productos> addProducto(@RequestBody Productos p){
+        return ResponseEntity.ok(productosService.addProducto(p));
+    }
+
+    @DeleteMapping (value = "/{id}")    // ../api/carrito1/productos/{id} la url de la API
+    public void deleteProducto(@PathVariable String id){
+        productosService.deleteProducto(id); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
+    }
 
 
 }
