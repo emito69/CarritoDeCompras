@@ -24,8 +24,8 @@ import java.util.List;
                                     // la annotation @SQLDelete me sobreescribe cualquier .delete que utilice desde JPARepository
 
 @Where(clause = "enable = true")   // la annotation @Where me filtra cualquier query desde JPARepository
-// una vez implementado este SOFT-DELETE, sólo podrán actualizarse productos con enable=true
-// para poder habilitarlos nuevamente no podrá hacerse utilizando esta clase.
+// una vez implementado este SOFT-DELETE, sólo podrán actualizarse productos con enable=true.
+// no se puede vovler a habilitarlos utilizando esta clase.
 public class Productos {
 
     @Id

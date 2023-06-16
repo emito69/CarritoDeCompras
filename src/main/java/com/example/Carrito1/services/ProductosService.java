@@ -4,8 +4,6 @@ import com.example.Carrito1.models.Productos;
 import com.example.Carrito1.repositories.IProductosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 
@@ -20,9 +18,10 @@ public class ProductosService {
         return Iprods.findAll();
     }
 
-    public Object getProducto(String id){
+    public Productos getProducto(String id){
 
-        return Iprods.findById(id);
+        return Iprods.findById(id)
+                .orElseThrow(() -> new RuntimeException("No existe el registro solicitado"));  // hay que atajar que devuelva un null, que no sería compatible con la clase Productos
     }
 
     public Productos addProducto(Productos p){

@@ -1,6 +1,7 @@
 package com.example.Carrito1.models;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import lombok.*;
@@ -25,12 +26,14 @@ public class Carrito {
     @Column(name = "id", nullable = false, length = 11)
     private Long id;   //acá usar Long no long
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // https://stackoverflow.com/questions/52656517/no-serializer-found-for-class-org-hibernate-proxy-pojo-bytebuddy-bytebuddyinterc
     @ManyToOne(fetch = FetchType.LAZY,     //EAGER para que me traiga todos los productos cuando lo quiera ver
                 optional = false        // siempre tiene que haber un pedido asociado a este carrito
                 )
     @JoinColumn(name="pedidos_id")  // por defecto será pedidos_id-carrito_id
     private Pedidos pedidos;
 
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"}) // https://stackoverflow.com/questions/52656517/no-serializer-found-for-class-org-hibernate-proxy-pojo-bytebuddy-bytebuddyinterc
     @ManyToMany(fetch = FetchType.EAGER) //EAGER para que me traiga todos los productos cuando lo quiera ver
     @JoinTable(
             name="carrito_producto", // nombre de la "tabla" con las columnas que quiero como foreings
