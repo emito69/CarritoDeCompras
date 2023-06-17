@@ -1,0 +1,100 @@
+{
+	"info": {
+		"_postman_id": "09921c3c-4df1-4f52-9b8e-09918dcedb0f",
+		"name": "Productos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27310716"
+	},
+	"item": [
+		{
+			"name": "/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/productos/list"
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/productos/1"
+			},
+			"response": []
+		},
+		{
+			"name": "/add     + objeto en body (JSON)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": null,\r\n    \"nombre\": \"Papas\",\r\n    \"categoria\": \"Verduras\",\r\n    \"subcategoria\": null,\r\n    \"descripcion\": \"Bolsa\",\r\n    \"precio\": 369.0,\r\n    \"foto\": null,\r\n    \"tamanio\": 1000,\r\n    \"tipo\": \"Perecedero\",\r\n    \"enabled\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/carrito1/productos/add"
+			},
+			"response": []
+		},
+		{
+			"name": "/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/productos/1"
+			},
+			"response": []
+		},
+		{
+			"name": "/update    + objeto del Body  (en formato JSON)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"Manzana Verde\",\r\n    \"categoria\": \"Frutas\",\r\n    \"subcategoria\": null,\r\n    \"descripcion\": \"Bolsa\",\r\n    \"precio\": 699.0,\r\n    \"foto\": null,\r\n    \"tamanio\": 1000,\r\n    \"tipo\": \"Perecedero\",\r\n    \"enabled\": true\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/carrito1/productos/update"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "949e50b7-9d93-4d41-92d3-688ae38fbb52",
+			"username": "user"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

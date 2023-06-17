@@ -1,0 +1,55 @@
+{
+	"info": {
+		"_postman_id": "6a487bf8-dc01-4143-b10c-12fd587cad2f",
+		"name": "Carritos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "27310716"
+	},
+	"item": [
+		{
+			"name": "/list",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/carritos/list"
+			},
+			"response": []
+		},
+		{
+			"name": "/{usar_id_pedido}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/carritos/1"
+			},
+			"response": []
+		},
+		{
+			"name": "/total/{usar_id_pedido}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/api/carrito1/carritos/total/1"
+			},
+			"response": []
+		},
+		{
+			"name": "/add     + objeto en body (JSON)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idPedido\": \"1\",\r\n    \"idProducto\": \"2\",\r\n    \"cantidad\": 500\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/api/carrito1/carritos/add"
+			},
+			"response": []
+		}
+	]
+}
