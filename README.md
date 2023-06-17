@@ -12,6 +12,8 @@
 
   <div id="cuerpo" align="left" >
         
+    📝 Crear la BD MySQL: "carrito1"
+    
     📝 APIs disponibles para carga de Productos, generar nuevo Pedido, carga de Carrito, ver contenido del Carrito según #Pedido 
        y obtener el total de valor del Carrito según #Pedido.
     
