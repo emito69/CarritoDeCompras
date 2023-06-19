@@ -44,7 +44,7 @@ public class ProductosController {
     }
 
     @PutMapping ("update")    // ../api/carrito1/productos/ la url de la API en respuesta a un POST toma el body
-    public ResponseEntity<Productos> updateProducto(@RequestBody Productos p){
+    public ResponseEntity<Productos> updateProducto(@RequestBody @Valid Productos p){
         return ResponseEntity.ok(productosService.updateProducto(p)); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
     }
 
