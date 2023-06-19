@@ -32,7 +32,7 @@ public class CarritosService {
     public List<Carrito> getCarritoxPedido(Long id){
 
         return Icarritos.findByPedidos_Id(id);
-                //.orElseThrow(() -> new RuntimeException("Compte Introuvable")); // hay que atajar que devuelva un null, que no sería compatible con la clase Carrito
+                //.orElseThrow(() -> new RuntimeException("No existe el registro solicitado")); // hay que atajar que devuelva un null, que no sería compatible con la clase Carrito
     }
 
     public Double getTotalxPedido(Long id){
