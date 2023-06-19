@@ -24,19 +24,20 @@ public class ProductosController {
         return ResponseEntity.ok(productosService.getListProductos());
     }
 
+    // como en prouctosService lanzamos una exception que extiende una RuntimeExcpetion no es necesario agregar el trhows ya que igual la ataja nuestro @RestControllerAdvice
     @GetMapping("/{id}")    // ../api/carrito1/productos/list es la url de la API
     public ResponseEntity<Object> getProducto(@PathVariable String id){
         return ResponseEntity.ok(productosService.getProducto(id)); // implementar el método findById(id) en la interface productosService para poder utilizarlo
     }
 
     @PostMapping("add")    // ../api/carrito1/productos/add es la url de la API
-    // como en prouctosService lanzamos una exception que extiende una RuntimeExcpetion no es necesario agregar el trhows ya que igual la ataja nuestro @RestControllerAdvice
     public ResponseEntity<Productos> addProducto(@RequestBody @Valid Productos p){ // agregamos la annotation de validación y usamos la neva clase DTO
         // la validacion devuelve "MethodArgumentNotValidException" y devuelve el/los argumentos[x] con error
 
         return new ResponseEntity<>(productosService.addProducto(p), HttpStatus.CREATED);
     }
 
+    // como en prouctosService lanzamos una exception que extiende una RuntimeExcpetion no es necesario agregar el trhows ya que igual la ataja nuestro @RestControllerAdvice
     @DeleteMapping (value = "/{id}")    // ../api/carrito1/productos/{id} la url de la API
     public void deleteProducto(@PathVariable String id){
         productosService.deleteProducto(id); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo

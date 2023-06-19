@@ -33,12 +33,17 @@ public class ProductosService {
 
     public void deleteProducto(String id){
 
-        Iprods.deleteById(id);
+        if (Iprods.existsById(id)) {
+            Iprods.deleteById(id);
+        } else throw new IdNoEncontradoException("No existe el registro solicitado con ID: "+ id);
+
     }
 
     public Productos updateProducto(Productos p){
 
-        return Iprods.saveAndFlush(p);
+        if (Iprods.existsById(p.getId().toString())) {
+            return Iprods.saveAndFlush(p);
+        } else throw new IdNoEncontradoException("No existe el registro solicitado con ID: "+ p.getId());
     }
 
 }
