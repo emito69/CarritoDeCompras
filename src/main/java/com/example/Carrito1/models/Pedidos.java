@@ -30,9 +30,4 @@ public class Pedidos {
             cascade = CascadeType.ALL) // si cambiamos un nro de pedido, que se actualice automáticamente
     private List<Carrito> carrito;
 
-/*    @Column(name = "cantidad", length = 10)
-    //@NotNull
-    private int cantidad;*/
-
-
 }

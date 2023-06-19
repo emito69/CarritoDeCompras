@@ -1,5 +1,6 @@
 package com.example.Carrito1.services;
 
+import com.example.Carrito1.exceptions.IdNoEncontradoException;
 import com.example.Carrito1.models.CargaDatosCarrito;
 import com.example.Carrito1.models.Carrito;
 import com.example.Carrito1.models.Pedidos;
@@ -31,34 +32,47 @@ public class CarritosService {
 
     public List<Carrito> getCarritoxPedido(Long id){
 
-        return Icarritos.findByPedidos_Id(id);
-                //.orElseThrow(() -> new RuntimeException("No existe el registro solicitado")); // hay que atajar que devuelva un null, que no sería compatible con la clase Carrito
+        if (!Icarritos.findByPedidos_Id(id).isEmpty()) {
+            return Icarritos.findByPedidos_Id(id);
+        } else throw new IdNoEncontradoException("No existe el registro solicitado con ID: "+ id);
     }
 
     public Double getTotalxPedido(Long id){
 
-        List<Carrito> carritosX = Icarritos.findByPedidos_Id(id);
-                //orElseThrow(() -> new RuntimeException("No existe el registro solicitado")); // hay que atajar que devuelva un null, que no sería compatible con la clase Carrito
+        if (!Icarritos.findByPedidos_Id(id).isEmpty()) {
 
-        Double total = 0.0;
+            List<Carrito> carritosX = Icarritos.findByPedidos_Id(id);
+                    //orElseThrow(() -> new RuntimeException("No existe el registro solicitado")); // hay que atajar que devuelva un null, que no sería compatible con la clase Carrito
 
-        //carritosX.forEach(a -> Double total += a.getTotal()); // Error: local variables referenced from a lambda expression must be final or effectively final
+            Double total = 0.0;
 
-        for (Carrito c: carritosX) {
+            //carritosX.forEach(a -> Double total += a.getTotal()); // Error: local variables referenced from a lambda expression must be final or effectively final
 
-            total += c.getTotal();
-        }
+            for (Carrito c: carritosX) {
 
-        return total;
+                total += c.getTotal();
+            }
+
+            return total;
+
+        }else throw new IdNoEncontradoException("No hay productos en el carrito del Pedido con ID: " + id); //+ carr.idPedido.toString()
+
     }
 
     public Carrito addProductoAlCarrito(CargaDatosCarrito carr){
 
-        Pedidos pedidoX = pedidosService.getPedido(carr.idPedido);
-        Productos productoX = productosService.getProducto(carr.idProducto);
+        if (pedidosService.existsPedidoById(carr.idPedido)) {
 
-        return Icarritos.save(new Carrito(null, pedidoX , Set.of(productoX), carr.cantidad, (productoX.getPrecio() /productoX.getTamanio() )* carr.cantidad));
+            if (productosService.existsProductoById(carr.idProducto)) {
 
+                Pedidos pedidoX = pedidosService.getPedido(carr.idPedido);
+                Productos productoX = productosService.getProducto(carr.idProducto);
+
+                return Icarritos.save(new Carrito(null, pedidoX, Set.of(productoX), carr.cantidad, (productoX.getPrecio() / productoX.getTamanio()) * carr.cantidad));
+
+            } else throw new IdNoEncontradoException("No existe el Producto solicitado con ID: " + carr.idProducto); // + carr.idProducto.toString()
+
+        } else throw new IdNoEncontradoException("No existe el Pedido solicitado con ID: " + carr.idPedido); //+ carr.idPedido.toString()
     }
 
     public void deleteCarrito(String id){
@@ -66,9 +80,18 @@ public class CarritosService {
         Icarritos.deleteById(id);
     }
 
-    public Carrito updateCarrito(Carrito p){
+/*    TENGO QUE PENSARLO MEJOR ANTES DE IMPLEMENTARLO
+    public Carrito updateCarrito(CargaDatosCarrito carr){
 
-        return Icarritos.saveAndFlush(p);
-    }
+        if (pedidosService.existsPedidoById(carr.idPedido)) {
+
+            if (productosService.existsProductoById(carr.idProducto)) {
+
+                return Icarritos.saveAndFlush(carr);
+
+            } else throw new IdNoEncontradoException("No existe el Producto solicitado con ID: " + carr.idProducto); // + carr.idProducto.toString()
+
+        } else throw new IdNoEncontradoException("No existe el Pedido solicitado con ID: " + carr.idPedido); //+ carr.idPedido.toString()
+    }*/
 
 }

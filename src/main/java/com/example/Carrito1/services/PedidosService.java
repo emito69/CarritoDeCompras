@@ -1,5 +1,6 @@
 package com.example.Carrito1.services;
 
+import com.example.Carrito1.exceptions.IdNoEncontradoException;
 import com.example.Carrito1.models.Pedidos;
 import com.example.Carrito1.repositories.IPedidosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class PedidosService {
     public Pedidos getPedido(String id){
 
         return Ipeds.findById(id)
-                .orElseThrow(() -> new RuntimeException("No existe el registro solicitado")); // hay que atajar que devuelva un null, que no sería compatible con la clase Pedidos
+                .orElseThrow(() -> new IdNoEncontradoException("No existe el registro solicitado con ID: "+ id)); // hay que atajar que devuelva un null, que no sería compatible con la clase Pedidos
     }
 
     public Pedidos addPedido(Pedidos p){
@@ -30,8 +31,15 @@ public class PedidosService {
     }
 
     public void deletePedido(String id){
+        if (Ipeds.existsById(id)) {
+            Ipeds.deleteById(id);
+        } else throw new IdNoEncontradoException("No existe el registro solicitado con ID: "+ id);
 
-        Ipeds.deleteById(id);
+    }
+
+    public boolean existsPedidoById(String id){
+
+        return Ipeds.existsById(id);
     }
 
 }

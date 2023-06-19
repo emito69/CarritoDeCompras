@@ -3,7 +3,9 @@ package com.example.Carrito1.controllers;
 import com.example.Carrito1.models.CargaDatosCarrito;
 import com.example.Carrito1.models.Carrito;
 import com.example.Carrito1.services.CarritosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,9 +36,9 @@ public class CarritosController {
 
 
     @PostMapping("add")    // ../api/carrito1/carritos/add es la url de la API
-    public ResponseEntity<Object> addProductoAlCarrito(@RequestBody CargaDatosCarrito p){
+    public ResponseEntity<Object> addProductoAlCarrito(@RequestBody @Valid CargaDatosCarrito p){
 
-        return ResponseEntity.ok(carritosService.addProductoAlCarrito(p));
+        return new ResponseEntity<>(carritosService.addProductoAlCarrito(p), HttpStatus.CREATED); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
     }
 
     @DeleteMapping (value = "/{id}")    // ../api/carrito1/carritos/{id} la url de la API
@@ -45,10 +47,12 @@ public class CarritosController {
         carritosService.deleteCarrito(id); // implementar el método deleteById(id) en la interface carritosService para poder utilizarlo
     }
 
+    /*    TENGO QUE PENSARLO MEJOR ANTES DE IMPLEMENTARLO
     @PutMapping ("update")    // ../api/carrito1/carritos/ la url de la API en respuesta a un POST toma el body
-    public ResponseEntity<Carrito> updateCarrito(@RequestBody Carrito p){
-        return ResponseEntity.ok(carritosService.updateCarrito(p)); // implementar el método deleteById(id) en la interface carritosService para poder utilizarlo
+    public ResponseEntity<Carrito> updateCarrito(@RequestBody @Valid Carrito p){
+        return new ResponseEntity<>(carritosService.updateCarrito(p), HttpStatus.CREATED); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
     }
+    */
 
 }
 

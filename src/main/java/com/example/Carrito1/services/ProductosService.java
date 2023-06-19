@@ -25,7 +25,6 @@ public class ProductosService {
                 .orElseThrow(() -> new IdNoEncontradoException("No existe el registro solicitado con ID: "+ id));  // hay que atajar que devuelva un null, que no sería compatible con la clase Productos
     }
 
-    // VERSION SIN DTO
     public Productos addProducto(Productos p){
 
         return Iprods.save(p);
@@ -44,6 +43,11 @@ public class ProductosService {
         if (Iprods.existsById(p.getId().toString())) {
             return Iprods.saveAndFlush(p);
         } else throw new IdNoEncontradoException("No existe el registro solicitado con ID: "+ p.getId());
+    }
+
+    public boolean existsProductoById(String id){
+
+        return Iprods.existsById(id);
     }
 
 }

@@ -4,6 +4,8 @@ package com.example.Carrito1.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.util.HashSet;
@@ -44,7 +46,8 @@ public class Carrito {
     private Set<Productos> productos = new HashSet<>(); // para que no se repitan
 
     @Column(name = "cantidad", length = 10)
-    //@NotNull
+    @NotNull(message = "La cantidad debe ser un valor entero")
+    @Min(value = 10, message = "La cantidad mínima es 10")
     private int cantidad;
 
     @Column(name = "total")

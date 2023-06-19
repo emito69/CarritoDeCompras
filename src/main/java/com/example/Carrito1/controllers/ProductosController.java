@@ -44,8 +44,9 @@ public class ProductosController {
     }
 
     @PutMapping ("update")    // ../api/carrito1/productos/ la url de la API en respuesta a un POST toma el body
+    //# Una vez borrados los Productos no pueden volver a habilitarse (enable=true) ya que el filtrado que se realiza no lo permite. Debería realizarse directamente desde el administrador de la base de datos.
     public ResponseEntity<Productos> updateProducto(@RequestBody @Valid Productos p){
-        return ResponseEntity.ok(productosService.updateProducto(p)); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
+        return new ResponseEntity<>(productosService.updateProducto(p), HttpStatus.CREATED); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
     }
 
 }
