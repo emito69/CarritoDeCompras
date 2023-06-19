@@ -3,6 +3,7 @@ package com.example.Carrito1.models;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -15,7 +16,7 @@ import java.util.List;
 // con esto ya CREA LA TABLA EN LA BASE DE DATOS
 
 @Data   // Getters y Setters
-@AllArgsConstructor     // Todos los Constructores (con todas las combinaciones posibles)
+@AllArgsConstructor // Todos los Constructores (con todas las combinaciones posibles)
 @NoArgsConstructor
 @Entity
 @Table(name="productos")  // le da el nombre a la tabla que se va a crear cuando se establezca la comm con la BD
@@ -33,30 +34,26 @@ public class Productos {
     @Column(name = "id", nullable = false, length = 11)
     private Long id;   //acá usar Long no long
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@JoinColumn(name="productos_id")
-    //private Pedidos pedido;
-
-    //@OneToMany(fetch = FetchType.LAZY)
-    //private List<Pedidos> pedido;
-
     @Column(name = "nombre", nullable = false, length = 255)
-    @NotBlank @NotNull
+    @NotBlank (message = "El nombre del producto no puede estar vacío")
+    @NotNull (message = "El nombre del producto no puede estar vacío")
     private String nombre;
 
     @Column(name = "categoria", length = 20)
-    @NotBlank @NotNull
+    @NotBlank (message = "La categoría de producto no puede estar vacía")
+    @NotNull (message = "La categoría de producto no puede estar vacía")
     private String categoria;
 
     @Column(name = "subcategoria", length = 20)
     private String subcategoria;
 
     @Column(name = "descripcion", length = 180)
-    @NotBlank @NotNull
+    @NotBlank (message = "La descripción del producto no puede estar vacía")
+    @NotNull (message = "La categoría de producto no puede estar vacía")
     private String descripcion;
 
     @Column(name = "precio")
-    @DecimalMin(value = "0.1")
+    @DecimalMin(value = "0.1", message = "EL precio mínimo es 0.1")
     @NotNull
     private Double precio;
 
@@ -64,11 +61,13 @@ public class Productos {
     private String foto;
 
     @Column(name = "tamanio", length = 10)
-    @NotNull
+    @NotNull (message = "El tamaño debe ser un valor entero")
+    @Min(value = 10, message = "El tamaño mínimo es 10")
     private int tamanio;
 
     @Column(name = "tipo", length = 150)
-    @NotBlank @NotNull
+    @NotBlank (message = "El tipo no puede estar vacío")
+    @NotNull (message = "El tipo no puede estar vacío")
     private String tipo;
 
     @Column(name = "enable")

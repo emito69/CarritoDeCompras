@@ -1,8 +1,11 @@
 package com.example.Carrito1.controllers;
 
+
 import com.example.Carrito1.models.Productos;
 import com.example.Carrito1.services.ProductosService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,8 +30,11 @@ public class ProductosController {
     }
 
     @PostMapping("add")    // ../api/carrito1/productos/add es la url de la API
-    public ResponseEntity<Productos> addProducto(@RequestBody Productos p){
-        return ResponseEntity.ok(productosService.addProducto(p));
+    // como en prouctosService lanzamos una exception que extiende una RuntimeExcpetion no es necesario agregar el trhows ya que igual la ataja nuestro @RestControllerAdvice
+    public ResponseEntity<Productos> addProducto(@RequestBody @Valid Productos p){ // agregamos la annotation de validación y usamos la neva clase DTO
+        // la validacion devuelve "MethodArgumentNotValidException" y devuelve el/los argumentos[x] con error
+
+        return new ResponseEntity<>(productosService.addProducto(p), HttpStatus.CREATED);
     }
 
     @DeleteMapping (value = "/{id}")    // ../api/carrito1/productos/{id} la url de la API
