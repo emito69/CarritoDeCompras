@@ -16,6 +16,8 @@
     
     📝 APIs disponibles para carga de Productos, generar nuevo Pedido, carga de Carrito, ver contenido del Carrito según #Pedido 
        y obtener el total de valor del Carrito según #Pedido.
+
+    📝 Validación en BackEnd de los métodos POST y GET ({Id}) con manejo de excepciones y respuestas HttpStatus+ErrorMessage mejorado.
     
     📝 Colecciones disponibles en la carpeta /Postman.
   
