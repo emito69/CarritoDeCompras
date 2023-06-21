@@ -18,6 +18,8 @@
        y obtener el total de valor del Carrito según #Pedido.
 
     📝 Validación en BackEnd de los métodos GET{Id}, POST, DELETE{Id} y PUT con manejo de excepciones y respuestas HttpStatus+ErrorMessage mejorado.
+
+    📝 Se implementan algunos Test de Integración (con la capa HTTP) a nivel RestController.
     
     📝 Colecciones disponibles en la carpeta /Postman.
   
