@@ -19,6 +19,8 @@ public class ProductosController {
     @Autowired
     private ProductosService productosService;
 
+    /******** END-POINTs para APIs ********/
+
     @GetMapping("list")    // ../api/carrito1/productos/list es la url de la API
     public ResponseEntity<List<Productos>> getListProductos(){
         return ResponseEntity.ok(productosService.getListProductos());
@@ -48,5 +50,6 @@ public class ProductosController {
     public ResponseEntity<Productos> updateProducto(@RequestBody @Valid Productos p){
         return new ResponseEntity<>(productosService.updateProducto(p), HttpStatus.CREATED); // implementar el método deleteById(id) en la interface productosService para poder utilizarlo
     }
+
 
 }

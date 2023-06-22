@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pedidos</title>
+    <!-- Bootstrap CSS only -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+
+</head>
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <a class="nav-link" th:href="@{/api/carrito1/carrito/weblist}">Carrito</a>
+    <a class="nav-link" th:href="@{/api/carrito1/pedidos/weblist}">Pedidos</a>
+    <a class="nav-link" th:href="@{/api/carrito1/productos/weblist}">Productos</a>
+    <a class="nav-link disabled">Administración de Almacén</a>
+</nav>
+
+<div class="container">
+
+    <div class="row p-3 justify-content-center">
+        <br>
+        <h2> Lista de Pedidos </h2>
+        <br>
+    </div>
+
+    <div class="container align-items-center">
+        <div class="row">
+            <div class="col align-self-center">
+            <table class="container  w-25  table text-center table-striped table-bordered">
+                <thead class="table-dark">
+                    <tr>
+                        <th scope="col">id</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="pedido : ${listaPedidos}">
+                        <td th:text="${pedido.getId()} ">id</td>
+                    </tr>
+                </tbody>
+            </table>
+            </div>
+
+            <div class="col align-self-start">
+            <form th:action="@{/api/carrito1/pedidos/webAddPedido1}" method="post">
+                <div >
+                    <button type="submit" class="btn btn-primary ">Agregar Pedido</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
