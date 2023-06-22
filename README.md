@@ -8,22 +8,35 @@
 <h2 align="center">  Carrito de compras </h2>
 
 <div id="body" align="center" >
-  <h4 align="center"> 👋  Algunos Tips:  </h4>
+  <h4 align="center"> 👋  Funcionalidades implementadas:  </h4>
 
   <div id="cuerpo" align="left" >
-        
-    📝 Crear la BD MySQL: "carrito1"
-    
+
+    📝 REST implementadas con BD MySQL.
+       
     📝 APIs disponibles para carga de Productos, generar nuevo Pedido, carga de Carrito, ver contenido del Carrito según #Pedido 
        y obtener el total de valor del Carrito según #Pedido.
 
     📝 Validación en BackEnd de los métodos GET{Id}, POST, DELETE{Id} y PUT con manejo de excepciones y respuestas HttpStatus+ErrorMessage mejorado.
 
-    📝 Se implementan algunos Test de Integración (con la capa HTTP) a nivel RestController.
+    📝 Tests de Integración (con la capa HTTP y capa Service) a nivel RESTControllers.
     
-    📝 Colecciones disponibles en la carpeta /Postman.
-  
+    📝 Front-End mediante Thymeleaf para pruebas y demostración.
+    
     📝 Documentación generada con Swagger.
+    
+  </div>
+  
+</div>
+
+<div id="body" align="center" >
+  <h4 align="center"> 👋  Algunos Tips de Uso:  </h4>
+
+  <div id="cuerpo" align="left" >
+        
+    ⚡ Crear la BD MySQL: "carrito1".
+    
+    ⚡ Colecciones disponibles en la carpeta /Postman.
     
   </div>
   
