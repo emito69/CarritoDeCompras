@@ -30,10 +30,10 @@
     <table class="table table-striped table-bordered">
         <thead class="table-dark">
         <tr>
-            <th scope="col">id</th>
-            <th scope="col">id_Pedido</th>
-            <th scope="col">id_Producto</th>
-            <th scope="col">desc_Producto</th>
+            <th scope="col">Id</th>
+            <th scope="col">Id Pedido</th>
+            <th scope="col">Id Producto</th>
+            <th scope="col">Nombre Producto</th>
             <th scope="col">Cantidad</th>
             <th scope="col">subTotal</th>
         </tr>
@@ -41,9 +41,9 @@
         <tbody>
         <tr th:each="carrito : ${listaCarritos}">
             <td th:text="${carrito.getId()} ">id</td>
-            <td th:text="${carrito.getPedidos().getId()} ">id_Pedido</td>
-            <td th:text="${carrito.getProductos()[0].getId()} ">id_Producto</td>
-            <td th:text="${carrito.getProductos()[0].getDescripcion()} ">desc_Producto</td>
+            <td th:text="${carrito.getPedidos().getId()} ">Id Pedido</td>
+            <td th:text="${carrito.getProductos()[0].getId()} ">Id Producto</td>
+            <td th:text="${carrito.getProductos()[0].getNombre()} ">Nombre Producto</td>
             <td th:text="${carrito.getCantidad()} ">Cantidad</td>
             <td th:text="${carrito.getTotal()} ">subTotal</td>
         </tr>

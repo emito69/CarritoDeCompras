@@ -6,6 +6,8 @@ import com.example.Carrito1.models.Productos;
 import com.example.Carrito1.repositories.ICarritoRepository;
 import com.example.Carrito1.repositories.IPedidosRepository;
 import com.example.Carrito1.repositories.IProductosRepository;
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
+import io.swagger.v3.oas.annotations.info.Info;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,6 +17,10 @@ import org.springframework.context.annotation.Profile;
 import java.util.List;
 import java.util.Set;
 
+@OpenAPIDefinition(info = @Info(
+		title = "Open API - Carrrito de Compras (por Emiliano Alvarez)",
+		version = "1.0"
+))
 @SpringBootApplication
 public class Carrito1Application {
 
@@ -31,10 +37,17 @@ public class Carrito1Application {
 		)
 		{
 		return args -> {
+
+			// Para cargar la tabla PRODUCTOS y realizar pruebas:
 			Productos producto1  = productosRepo.save(new Productos(null, "Zanahoria", "Verduras", null, "Bolsa", 299.0, null, 1000, "Perecedero", true));
 			Productos producto2  = productosRepo.save(new Productos(null, "Manzana Roja", "Frutas", null, "Bolsa", 599.0, null, 1000, "Perecedero", true));
 			Productos producto3  = productosRepo.save(new Productos(null, "Lomo", "Carnes", null, "Embasado", 4500.0, null, 1000, "Perecedero", true));
 			Productos producto4  = productosRepo.save(new Productos(null, "Leche", "Lacteos", null, "Sachet", 292.0, null, 1000, "Perecedero", true));
+			productosRepo.save(new Productos(null, "Pan Lactal Blanco", "Panaderia", null, "Bolsa", 525.2, null, 550, "Perecedero", true));
+			productosRepo.save(new Productos(null, "Garbanzos", "Legumbres", null, "Bolsa", 119.49, null, 300, "Perecedero", true));
+			productosRepo.save(new Productos(null, "Jabón Líquido", "Limpieza", null, "Sachet", 1632.81, null, 500, "No perecedero", true));
+			productosRepo.save(new Productos(null, "Cubiertos", "Hogar", null, "Caja", 3790.00, null, 10, "No perecedero", true));
+			productosRepo.save(new Productos(null, "Microondas", "Electrodomesticos", null, "Caja", 59999.00, null, 20, "No perecedero", true));
 
 			/*
 			Pedidos pedido1 = pedidosRepo.save(new Pedidos(null, null));
