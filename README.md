@@ -14,10 +14,11 @@
 
     📝 REST implementadas con BD MySQL.
        
-    📝 APIs disponibles para carga de Productos, generar nuevo Pedido, carga de Carrito, ver contenido del Carrito según #Pedido 
-       y obtener el total de valor del Carrito según #Pedido.
+    📝 APIs disponibles para carga de Productos, generar nuevo Pedido, carga de Carrito, 
+       ver contenido del Carrito según #Pedido y obtener el total de valor del Carrito según #Pedido.
 
-    📝 Validación en BackEnd de los métodos GET{Id}, POST, DELETE{Id} y PUT con manejo de excepciones y respuestas HttpStatus+ErrorMessage mejorado.
+    📝 Validación en BackEnd de los métodos GET{Id}, POST, DELETE{Id} y PUT con manejo de excepciones 
+        y respuestas HttpStatus+ErrorMessage mejorado.
 
     📝 Tests de Integración (con la capa HTTP y capa Service) a nivel RESTControllers.
     
@@ -30,7 +31,7 @@
 </div>
 
 <div id="body" align="center" >
-  <h4 align="center"> 👋  Algunos Tips de Uso:  </h4>
+  <h4 align="center"> 👋  Tips de uso:  </h4>
 
   <div id="cuerpo" align="left" >
         
